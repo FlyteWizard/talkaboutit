@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Title -->
+    <title>Home | TalkAboutIt</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./static/img/favicon.png" type="image/png">
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Css Main -->
+    <link rel="stylesheet" href="./static/css/app.css">
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <!-- Navigation -->
+      <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">
+          TalkAboutIt
+        </a>
+      </nav>
+    </header>
+
+    <!-- Main -->
+    <main class="container">
+      <!-- Introduction -->
+      <section>
+        <h1>TalkAboutIt</h1>
+        <p>
+          Search for Tweets about a paticular subject.<br>
+          Enter a Search Term in the input field below and Hit Seach.
+        </p>
+      </section>
+      
+      <!-- Search Term -->
+      <section>
+        <div class="form-group">
+          <label for="searchTerm">Search Tweets</label>
+          <input type="email" class="form-control" id="searchTerm" placeholder="Search Term">
+        </div>
+        <button class="btn btn-outline-info" onclick="setSearchTerm()">Search</button>
+      </section>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="./static/js/app.js"></script>
+  </body>
+</html>

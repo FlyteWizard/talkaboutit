@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Title -->
+    <title>Search | TalkAboutIt</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./static/img/favicon.png" type="image/png">
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Css Main -->
+    <link rel="stylesheet" href="./static/css/app.css">
+  </head>
+  <body onload="search()">
+    <!-- Header -->
+    <header>
+      <!-- Navigation -->
+      <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">
+          TalkAboutIt
+        </a>
+        <span class="navbar-brand">
+          Searched Term: <span id="searchedTerm"></span>
+        </span>
+      </nav>
+    </header>
+    
+    <!-- Main -->
+    <main class="container">
+      <!-- Introduction -->
+      <section>
+        <h1>TalkAboutIt</h1>
+        <p>
+          Below will be the twitter feed with the most recent tweets about the searched term.
+        </p>
+      </section>
+
+      <!-- Tweets -->
+      <section id="tweets" class="row">
+      </section>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="./static/js/app.js"></script>
+  </body>
+</html>
