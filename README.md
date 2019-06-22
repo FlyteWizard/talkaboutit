@@ -1,6 +1,10 @@
 # TalkAboutIt - HackVictoria
 
-Application made during HackVictoria 2016.
+This application lets users view tweets based on a search term they entered.
+
+**Original Application made during HackVictoria 2016**
+
+Fork of original repository: [https://github.com/FlyteWizard/HackVictoria](https://github.com/FlyteWizard/HackVictoria)
 
 ## Made By:
 
