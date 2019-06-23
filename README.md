@@ -37,16 +37,11 @@ Fork of original repository: [https://github.com/FlyteWizard/HackVictoria](https
 
 9. `flask run` or `python3 app.py`
 
+10. Visit `http://127.0.0.1:5000/`
+
 ## Deploying
 
 ## Documentation
 
 * https://developer.twitter.com/en/docs
 * https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets.html
-
-## TODO
-
-* Allow Users to Set `geocode` Restrictions [Reference](https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets)
-  * Latitude
-  * Longitude
-  * Radius (Km)

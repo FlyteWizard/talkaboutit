@@ -2,7 +2,7 @@
 const displayTweets = (results) => {
   // If nothing matches show a retry button
   // Else show tweets
-  if(results.tweets.length === 0) {
+  if (results.tweets.length === 0) {
     // Create div
     let div = document.createElement("div");
     // Assign div a Class
@@ -17,7 +17,7 @@ const displayTweets = (results) => {
     document.getElementById("tweets").appendChild(div);
   } else {
     // For each result
-    for(let i = 0; i < results.tweets.length; i++) {
+    for (let i = 0; i < results.tweets.length; i++) {
       // Create div
       let div = document.createElement("div");
       // Assign div a Class
@@ -43,16 +43,19 @@ const displayTweets = (results) => {
 }
 
 // searchTalks
-const searchTalks = (searchTerm, resultType) => {
+const searchTalks = (searchTerm, resultType, latitude, longitude, radius) => {
   // Set searchTerm to the searchTerm
   document.getElementById("searchedTerm").innerHTML = searchTerm;
 
   // Create the query
   let query = "search=" + searchTerm;
-  let chosenResultType = "resultType=" + resultType;
+  let type = "type=" + resultType;
+  let lat = "lat=" + latitude;
+  let long = "long=" + longitude;
+  let rad = "rad=" + radius;
 
   // Get -> /search
-  return fetch("search?" + query + "&" + chosenResultType, {
+  return fetch("search?" + query + "&" + type + "&" + lat + "&" + long + "&" + rad, {
     method: "GET"
   })
   .then(response => response.json())
@@ -65,8 +68,15 @@ const searchTalks = (searchTerm, resultType) => {
 
 // search
 const search = () => {
+  // Get values for searchTerm, resultType, latitude, longitude, and redius
+  let searchTerm = sessionStorage.getItem("searchTerm");
+  let resultType = sessionStorage.getItem("resultType");
+  let latitude = sessionStorage.getItem("latitude");
+  let longitude = sessionStorage.getItem("longitude");
+  let radius = sessionStorage.getItem("radius");
+
   // searchTalks
-  searchTalks(sessionStorage.getItem("searchTerm"), sessionStorage.getItem("resultType"));
+  searchTalks(searchTerm, resultType, latitude, longitude, radius);
 }
 
 // changeToTweetsPage
@@ -77,75 +87,51 @@ const changeToTweetsPage = () => {
 
 // setSearchTerm
 const setSearchTerm = () => {
-  if(document.getElementById("searchTerm").value !== "") {
-    // Clear searchTerm and resultType
-    sessionStorage.removeItem("searchTerm");
-    sessionStorage.removeItem("resultType");
+  // Prevent page from refreshing
+  event.preventDefault();
 
-    // Get value
-    let searchTerm = document.getElementById("searchTerm").value;
-    let chosenResultType = document.getElementById("resultType").options[resultType.selectedIndex].value;
-    // Set searchTerm and resultType
-    sessionStorage.setItem("searchTerm", searchTerm);
-    sessionStorage.setItem("resultType", chosenResultType);
+  // Clear searchTerm, resultType, latitude, longitude, and radius
+  sessionStorage.removeItem("searchTerm");
+  sessionStorage.removeItem("resultType");
+  sessionStorage.removeItem("latitude");
+  sessionStorage.removeItem("longitude");
+  sessionStorage.removeItem("radius");
 
-    // Fresh Search
-    document.getElementById("searchTerm").value = "";
+  // Get values for searchTerm, resultType, latitude, longitude, and radius
+  let searchTerm = document.getElementById("searchTerm").value;
+  let type = document.getElementById("resultType").options[resultType.selectedIndex].value;
+  let latitude = document.getElementById("latitude").value;
+  let longitude = document.getElementById("longitude").value;
+  let radius = document.getElementById("radius").value;
 
-    // changeToTweetsPage
-    changeToTweetsPage();
-  } else {
-    console.log("😭 Search cannot be empty.")
-  }
-}
+  // Set searchTerm, resultType, latitude, longitude, and radius
+  sessionStorage.setItem("searchTerm", searchTerm);
+  sessionStorage.setItem("resultType", type);
+  sessionStorage.setItem("latitude", latitude);
+  sessionStorage.setItem("longitude", longitude);
+  sessionStorage.setItem("radius", radius);
 
-// disableButtonToggle
-const disableButtonToggle = () => {
-  // Get buttons from the page
-  let buttons = document.getElementsByClassName("btn");
+  // Fresh Search
+  document.getElementById("searchTerm").value = "";
+  document.getElementById("latitude").value = "";
+  document.getElementById("longitude").value = "";
+  document.getElementById("radius").value = "";
 
-  // If nothing in input field disable button
-  // Else undisable
-  if(document.getElementById("searchTerm").value === "") {
-    for(let i = 0; i < buttons.length; i++) {
-      // Sets buttons to disabled
-      buttons[i].disabled = true;
-    }
-  } else {
-    for(let i = 0; i < buttons.length; i++) {
-      // Set buttons to undisabled
-      buttons[i].disabled = false;
-    }
-  }
+  // changeToTweetsPage
+  changeToTweetsPage();
 }
 
 // Check if the element exists
 let searchTermExist = document.getElementById("searchTerm");
+let latitudeExist = document.getElementById("latitude");
+let longitudeExist = document.getElementById("longitude");
+let radiusExist = document.getElementById("radius");
 
 // If it exists
-if(searchTermExist) {
-  // Listen for input
-  document.getElementById("searchTerm").addEventListener("input", function (event) {
-    // disableButtonToggle
-    disableButtonToggle();
-  });
-
-  // disableButtonToggle
-  disableButtonToggle();
-
-  // Allows for Enter Key to serve as Button Click
-  document.getElementById("searchTerm").addEventListener("keyup", function (event) {
-    // If key is not Enter return nothing
-    // Else trigger setSearchTerm
-    if(event.key !== "Enter") {
-      return;
-    } else {
-      event.preventDefault();
-      // setSearchTerm
-      setSearchTerm();
-    }
-  })
-
+if (searchTermExist && latitudeExist && longitudeExist && radiusExist) {
   // Fresh Search
   document.getElementById("searchTerm").value = "";
+  document.getElementById("latitude").value = "";
+  document.getElementById("longitude").value = "";
+  document.getElementById("radius").value = "";
 }

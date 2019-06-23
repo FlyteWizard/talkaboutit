@@ -38,16 +38,21 @@ def search():
   access_token = oauth2.Token(key=ACCESS_KEY, secret=ACCESS_SECRET)
   client = oauth2.Client(consumer, access_token)
 
-  # Get search from URL
+  # Get search, type, lat, long, rad from URL
   search_term = request.args.get("search")
-  result_type = request.args.get("resultType")
+  result_type = request.args.get("type")
+  
+  latitude = str(request.args.get("lat"))
+  longitude = str(request.args.get("long"))
+  radius = str(request.args.get("rad"))
+
   tweets = []
 
   if search_term:
     # Build query string
 
-    # Geofence to ~Victoria, BC
-    geofence = "48.407326,-123.329773,20km"
+    # Geofence to location specified from user
+    geofence = latitude + "," + longitude + "," + radius + "km"
     # Add search term to query, add geofence to geocode and set truncate to false
     url = "https://api.twitter.com/1.1/search/tweets.json?q=%s" % search_term + "&geocode=%s" % geofence + "&tweet_mode=extended" + "&result_type=%s" % result_type
 
