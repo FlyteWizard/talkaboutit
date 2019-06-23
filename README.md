@@ -41,6 +41,14 @@ Fork of original repository: [https://github.com/FlyteWizard/HackVictoria](https
 
 ## Deploying
 
+1. Login to Heroku
+
+2. Create Application
+
+3. Set Config Vars
+
+4. Push to heroku
+
 ## Documentation
 
 * https://developer.twitter.com/en/docs
