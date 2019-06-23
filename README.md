@@ -1,6 +1,6 @@
 # TalkAboutIt - HackVictoria
 
-This application lets users view tweets based on a search term they entered.
+TalkAboutIt is an application that lets users view tweets based on a search term they entered.
 
 **Original Application made during HackVictoria 2016**
 
@@ -50,5 +50,3 @@ Fork of original repository: [https://github.com/FlyteWizard/HackVictoria](https
   * Latitude
   * Longitude
   * Radius (Km)
-* Allow Users to Set `result_type`
-  * Mixed / Recent / Popular

@@ -40,6 +40,7 @@ def search():
 
   # Get search from URL
   search_term = request.args.get("search")
+  result_type = request.args.get("resultType")
   tweets = []
 
   if search_term:
@@ -48,7 +49,7 @@ def search():
     # Geofence to ~Victoria, BC
     geofence = "48.407326,-123.329773,20km"
     # Add search term to query, add geofence to geocode and set truncate to false
-    url = "https://api.twitter.com/1.1/search/tweets.json?q=%s" % search_term + "&geocode=%s" % geofence + "&tweet_mode=extended"
+    url = "https://api.twitter.com/1.1/search/tweets.json?q=%s" % search_term + "&geocode=%s" % geofence + "&tweet_mode=extended" + "&result_type=%s" % result_type
 
     # GET Twitter API
     response, data = client.request(url)

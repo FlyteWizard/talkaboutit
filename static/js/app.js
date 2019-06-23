@@ -43,15 +43,16 @@ const displayTweets = (results) => {
 }
 
 // searchTalks
-const searchTalks = (searchTerm) => {
+const searchTalks = (searchTerm, resultType) => {
   // Set searchTerm to the searchTerm
   document.getElementById("searchedTerm").innerHTML = searchTerm;
 
   // Create the query
   let query = "search=" + searchTerm;
+  let chosenResultType = "resultType=" + resultType;
 
   // Get -> /search
-  return fetch("search?" + query, {
+  return fetch("search?" + query + "&" + chosenResultType, {
     method: "GET"
   })
   .then(response => response.json())
@@ -65,7 +66,7 @@ const searchTalks = (searchTerm) => {
 // search
 const search = () => {
   // searchTalks
-  searchTalks(sessionStorage.getItem('searchTerm'));
+  searchTalks(sessionStorage.getItem("searchTerm"), sessionStorage.getItem("resultType"));
 }
 
 // changeToTweetsPage
@@ -77,17 +78,20 @@ const changeToTweetsPage = () => {
 // setSearchTerm
 const setSearchTerm = () => {
   if(document.getElementById("searchTerm").value !== "") {
-    // Clear searchTerm
-    sessionStorage.removeItem('searchTerm');
+    // Clear searchTerm and resultType
+    sessionStorage.removeItem("searchTerm");
+    sessionStorage.removeItem("resultType");
 
     // Get value
     let searchTerm = document.getElementById("searchTerm").value;
-    // Set searchTerm
-    sessionStorage.setItem('searchTerm', searchTerm);
+    let chosenResultType = document.getElementById("resultType").options[resultType.selectedIndex].value;
+    // Set searchTerm and resultType
+    sessionStorage.setItem("searchTerm", searchTerm);
+    sessionStorage.setItem("resultType", chosenResultType);
 
     // Fresh Search
     document.getElementById("searchTerm").value = "";
-    
+
     // changeToTweetsPage
     changeToTweetsPage();
   } else {
@@ -121,7 +125,7 @@ let searchTermExist = document.getElementById("searchTerm");
 // If it exists
 if(searchTermExist) {
   // Listen for input
-  document.getElementById("searchTerm").addEventListener('input', function (event) {
+  document.getElementById("searchTerm").addEventListener("input", function (event) {
     // disableButtonToggle
     disableButtonToggle();
   });
