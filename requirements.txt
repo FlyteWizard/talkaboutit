@@ -6,4 +6,4 @@ pep8==1.7.0
 pyflakes==1.0.0
 python-dotenv==0.10.1
 twitter==1.17.1
-Werkzeug==0.14
+Werkzeug==0.15.3
