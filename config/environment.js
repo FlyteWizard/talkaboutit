@@ -47,5 +47,10 @@ module.exports = function(environment) {
     // here you can enable a production-specific feature
   }
 
+  ENV.CONSUMER_KEY = process.env.CONSUMER_KEY;
+  ENV.CONSUMER_SECRET = process.env.CONSUMER_SECRET;
+  ENV.ACCESS_KEY = process.env.ACCESS_KEY;
+  ENV.ACCESS_SECRET = process.env.ACCESS_SECRET;
+
   return ENV;
 };

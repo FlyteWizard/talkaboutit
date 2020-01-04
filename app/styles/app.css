@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+/* Body */
+body{
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+}
+
+/* Main */
+section {
+  padding-top: 2rem;
+}
+
+section:last-of-type {
+  padding-bottom: 2rem;
+}
+
+/* Card */
+.col-sm-12 {
+  padding-top: 1rem;
+}

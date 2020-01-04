@@ -1,0 +1,40 @@
+{{! Information --}}
+<section>
+  <h1>TalkAboutIt</h1>
+  <p>
+    Search for Tweets about a paticular subject.<br>
+    Enter a Search Term in the input field below and Hit Seach.
+  </p>
+</section>
+
+{{! Form --}}
+<section>
+  <BsForm as |form|>
+    <div class="form-group">
+      <label for="tweetType">Tweet Type</label>
+      <select name="tweetType" id="tweetType" class="form-control">
+        <option value="recent">Recent</option>
+        <option value="mixed">Mixed</option>
+        <option value="popular">Popular</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-5">
+        <form.element @controlType="number" @id="latitude" @label="Latitude" @placeholder="48.407326" @property="latitude" />
+      </div>
+      <div class="col-md-5">
+        <form.element @controlType="number" @id="longitude" @label="Longitude" @placeholder="-123.329773" @property="longitude" />
+      </div>
+      <div class="col-md-2">
+        <form.element @controlType="number" @id="radius" @label="Radius (KM)" @placeholder="20" @property="Radius" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <form.element @controlType="text" @id="searchTerm" @label="Search Term" @placeholder="Search Term" @property="searchTerm" />
+    </div>
+    
+    <BsButton @defaultText="Search" @type="primary" @buttonType="submit" />
+  </BsForm>
+</section>
