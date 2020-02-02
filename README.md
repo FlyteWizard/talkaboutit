@@ -1,4 +1,4 @@
-# TalkAboutIt - HackVictoria
+# TalkAboutIt - HackVictoria :fuelpump:
 
 TalkAboutIt is an application that lets users view tweets based on a search term they entered.
 
