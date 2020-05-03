@@ -9,7 +9,7 @@
 
 {{! Form --}}
 <section>
-  <BsForm as |form|>
+  <BsForm>
     <div class="form-group">
       <label for="tweetType">Tweet Type</label>
       <select name="tweetType" id="tweetType" class="form-control">
@@ -21,18 +21,22 @@
 
     <div class="form-row">
       <div class="col-md-5">
-        <form.element @controlType="number" @id="latitude" @label="Latitude" @placeholder="48.407326" @property="latitude" />
+        <label for="latitude">Latitude</label>
+        <Input @class="form-control" @type="number" @id="latitude" @step="any" @placeholder="48.407326" @property="latitude" />
       </div>
       <div class="col-md-5">
-        <form.element @controlType="number" @id="longitude" @label="Longitude" @placeholder="-123.329773" @property="longitude" />
+        <label for="longitude">Longitude</label>
+        <Input @class="form-control" @type="number" @id="longitude" @step="any" @placeholder="-123.329773" @property="longitude" />
       </div>
       <div class="col-md-2">
-        <form.element @controlType="number" @id="radius" @label="Radius (KM)" @placeholder="20" @property="Radius" />
+        <label for="radius">Radius (KM)</label>
+        <Input @class="form-control" @type="number" @id="radius" @step="any" @placeholder="20" @property="radius" />
       </div>
     </div>
 
     <div class="form-group">
-      <form.element @controlType="text" @id="searchTerm" @label="Search Term" @placeholder="Search Term" @property="searchTerm" />
+      <label for="searchTerm">Search Term</label>
+      <Input @class="form-control" @type="text" @id="searchTerm" @step="any" @placeholder="Search Term" @property="searchTerm" />
     </div>
     
     <BsButton @defaultText="Search" @type="primary" @buttonType="submit" />
