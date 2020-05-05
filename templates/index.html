@@ -30,8 +30,9 @@
       <section>
         <h1>TalkAboutIt</h1>
         <p>
-          Search for Tweets about a paticular subject.<br>
-          Enter a Search Term in the input field below and Hit Seach.
+          Search for Tweets! </br>
+          Enter a term in the input field below and hit the search button (or enter key on the keyboard). </br>
+          Hint: For best results use recent for result type.
         </p>
       </section>
 
@@ -39,7 +40,7 @@
       <section>
         <form onsubmit="setSearchTerm()">
           <div class="form-group">
-            <label for="resultType">Example select</label>
+            <label for="resultType">Result Type</label>
             <select class="form-control" id="resultType">
               <option value="recent">Recent</option>
               <option value="mixed">Mixed</option>
@@ -61,10 +62,12 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="searchTerm">Search Tweets</label>
+            <label for="searchTerm">Search Term</label>
             <input type="text" class="form-control" id="searchTerm" placeholder="Search Term" required="required">
           </div>
-          <button type="submit" class="btn btn-outline-info">Search</button>
+          <div class="form-group d-flex justify-content-end">
+            <button type="submit" class="btn btn-outline-info">Search</button>
+          </div>
         </form>
       </section>
     </main>

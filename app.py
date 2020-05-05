@@ -2,11 +2,9 @@
 from flask import Flask, jsonify, render_template, request
 # import the load_dotenv from the dotenv module
 from dotenv import load_dotenv
-# import json, oauth2, os, and urllib
-import json
-import oauth2
+# import os and twitter
 import os
-import urllib
+import twitter
 
 # Initiate dotenv
 load_dotenv()
@@ -31,51 +29,45 @@ def tweets():
   return render_template('tweets.html')
 
 # Search
-@app.route('/search')
+@app.route('/search', methods=['POST'])
 def search():
-  # Oauth2 Setup
-  consumer = oauth2.Consumer(key=CONSUMER_KEY, secret=CONSUMER_SECRET)
-  access_token = oauth2.Token(key=ACCESS_KEY, secret=ACCESS_SECRET)
-  client = oauth2.Client(consumer, access_token)
+  api = twitter.Api(consumer_key=CONSUMER_KEY,
+                    consumer_secret=CONSUMER_SECRET,
+                    access_token_key=ACCESS_KEY,
+                    access_token_secret=ACCESS_SECRET)
 
-  # Get search, type, lat, long, rad from URL
-  search_term = request.args.get("search")
-  result_type = request.args.get("type")
-  
-  latitude = str(request.args.get("lat"))
-  longitude = str(request.args.get("long"))
-  radius = str(request.args.get("rad"))
+  data_from_user = request.json
+
+  search_term = data_from_user['search']
+  result_type = data_from_user['type']
+  latitude = data_from_user['lat']
+  longitude = data_from_user['long']
+  radius = data_from_user['rad']
 
   tweets = []
 
   if search_term:
-    # Build query string
-
     # Geofence to location specified from user
     geofence = latitude + "," + longitude + "," + radius + "km"
     # Add search term to query, add geofence to geocode and set truncate to false
-    url = "https://api.twitter.com/1.1/search/tweets.json?q=%s" % search_term + "&geocode=%s" % geofence + "&tweet_mode=extended" + "&result_type=%s" % result_type
+    url = "q=%s" % search_term + "&geocode=%s" % geofence + "&tweet_mode=extended" + "&result_type=%s" % result_type
 
-    # GET Twitter API
-    response, data = client.request(url)
+    data = api.GetSearch(raw_query=url)
 
-    # Parse data
-    json_data = json.loads(data)
-    statuses = json_data.get('statuses')
-    if statuses:
-      for tweet in statuses:
+    if data:
+      for tweet in data:
         # create readable date
-        created = tweet.get('created_at')
+        created = tweet.created_at
         splt = created.split(' ')
         # Their date is in "Sat March 2nd 00:00... 2016", so take March 2nd 2016
         created = '%s %s %s' % (splt[1], splt[2], splt[-1])
         # Set variables
         fmt_tweet = {
           'created_at': created,
-          'id_str': tweet.get('id_str'),
-          'full_text': tweet.get('full_text'),
-          'name': tweet['user'].get('name'),
-          'screen_name': tweet['user'].get('screen_name')
+          'id_str': tweet.id_str,
+          'full_text': tweet.full_text,
+          'name': tweet.user.name,
+          'screen_name': tweet.user.screen_name
         }
         tweets.append(fmt_tweet)
 

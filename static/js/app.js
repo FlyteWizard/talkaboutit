@@ -45,25 +45,32 @@ const displayTweets = (results) => {
 // searchTalks
 const searchTalks = (searchTerm, resultType, latitude, longitude, radius) => {
   // Set searchTerm to the searchTerm
-  document.getElementById("searchedTerm").innerHTML = searchTerm;
+  document.getElementById("searchedTerm").innerText = searchTerm;
 
-  // Create the query
-  let query = "search=" + searchTerm;
-  let type = "type=" + resultType;
-  let lat = "lat=" + latitude;
-  let long = "long=" + longitude;
-  let rad = "rad=" + radius;
+  // search
+  const search = {
+    search: searchTerm,
+    type: resultType,
+    lat: latitude,
+    long: longitude,
+    rad: radius
+  };
 
-  // Get -> /search
-  return fetch("search?" + query + "&" + type + "&" + lat + "&" + long + "&" + rad, {
-    method: "GET"
-  })
-  .then(response => response.json())
-  .then(function(data) {
-    // displayTweets
-    displayTweets(data);
-  })
-  .catch(error => console.error('😭 Error:', error));
+  const options = {
+    method: "POST",
+    body: JSON.stringify(search),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }
+
+  // Fetch POST
+  fetch("/search", options)
+    .then((response) => response.json())
+    .then((data) => {
+      displayTweets(data);
+    })
+    .catch(error => console.error("😭 Error:", error));
 }
 
 // search

@@ -14,7 +14,8 @@ Fork of original repository: [https://github.com/FlyteWizard/HackVictoria](https
 ## Made With:
 
 * HTML/CSS/JavaScript
-* Flask Python Server
+* Flask
+* Gunicorn Server
 * Bootstrap 4
 
 ## Getting Started
@@ -52,4 +53,5 @@ Fork of original repository: [https://github.com/FlyteWizard/HackVictoria](https
 ## Documentation
 
 * https://developer.twitter.com/en/docs
-* https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets.html
+* https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets
+* https://python-twitter.readthedocs.io/en/latest/
