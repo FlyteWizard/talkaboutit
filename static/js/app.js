@@ -56,6 +56,7 @@ const searchTalks = (searchTerm, resultType, latitude, longitude, radius) => {
     rad: radius
   };
 
+  // options
   const options = {
     method: "POST",
     body: JSON.stringify(search),
@@ -64,7 +65,7 @@ const searchTalks = (searchTerm, resultType, latitude, longitude, radius) => {
     }
   }
 
-  // Fetch POST
+  // Fetch to /search
   fetch("/search", options)
     .then((response) => response.json())
     .then((data) => {
